@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAO Funding Application</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: #202124;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 20px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: #1a73e8;
+            font-size: 32px;
+            margin: 10px 0;
+        }
+        
+        .slogan {
+            color: #5f6368;
+            font-size: 18px;
+            font-style: italic;
+        }
+        
+        .form-container {
+            background-color: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+        }
+        
+        .form-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #d93025;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        input[type="text"]:focus {
+            border: 1px solid #1a73e8;
+            outline: none;
+        }
+        
+        .note-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a73e8;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .email {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .submit-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1765cc;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #5f6368;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+        
+        .verification-note {
+            font-size: 13px;
+            color: #5f6368;
+            margin-top: 5px;
+        }
+        
+        .success-message {
+            color: #0d652d;
+            background-color: #e6f4ea;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+          <h1>CAO Funding</h1>
+        <div class="slogan">Empowering Dreams Through Education</div>
+    </div>
+    
+    <div class="form-container">
+        <form id="fundingForm">
+            <div class="form-section">
+                <div class="form-title required">First Name</div>
+                <input type="text" name="firstName" required>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-title required">Surname</div>
+                <input type="text" name="surname" required>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-title required">ID Number</div>
+                <input type="text" name="idNumber" required>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-title required">CAO Number</div>
+                <input type="text" name="caoNumber" required>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Please send the following documents to complete your application:</strong></p>
+                <ul>
+                    <li>Proof of address (not older than 3 months)</li>
+                    <li>Certified copy of your ID document</li>
+                </ul>
+                <p class="verification-note">These documents will be used for verification and evaluation to determine whether the applicant qualifies for funding.</p>
+                <p>Email documents to: <span class="email">funding@cao.org</span></p>
+            </div>
+            
+            <div style="text-align: right;">
+                <button type="button" class="submit-btn" onclick="submitForm()">Submit Application</button>
+                <div id="successMessage" class="success-message">
+                    Application successful! Please upload your documents using your email for your application to be fully submitted.
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="footer">
+        © 2023 CAO Funding | Bridging the Education Gap
+    </div>
+
+    <script>
+        function submitForm() {
+            // Here you would normally handle form submission to a server
+            // For this example, we'll just show the success message
+            
+            // Validate required fields
+            const form = document.getElementById('fundingForm');
+            const inputs = form.querySelectorAll('input[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#d93025';
+                } else {
+                    input.style.borderColor = '#dadce0';
+                }
+            });
+            
+            if (isValid) {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Scroll to show the message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // Reset form (optional)
+                // form.reset();
+            }
+        }
+    </script>
+</body>
+</html>
